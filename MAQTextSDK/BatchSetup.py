@@ -4,7 +4,10 @@ class BatchSetup():
     :param list data: User text corpus
     """
     def __init__(self,data):
-        self.data = data
+        if(isinstance(data,list)):
+            self.data = data
+        else:
+            raise TypeError
     
     def makeBody(self):
         """
@@ -16,7 +19,7 @@ class BatchSetup():
         for idx,data in enumerate(self.data):
             dataDict = dict()
             dataDict['id'] = str(idx)
-            dataDict['text'] = data
+            dataDict['text'] = str(data)
             dataList.append(dataDict)
         dataInput['data'] = dataList
         return dataInput
